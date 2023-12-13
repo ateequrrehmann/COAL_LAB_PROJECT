@@ -4,11 +4,12 @@ include Irvine32.inc
 ; Data section to declare variables
 .data
     ; Take the name from user
-    Department_Name byte "------------------------------------------Department BS Cyber Security-------------------------------------",0
+    Department_Name byte "------------------------------------------Department BS Computer Science-------------------------------------",0
     Subject_Name byte    "-----------------------------------Computer Organization & Assembly Language-------------------------------",0
     Project_Title byte   "------------------------Calculation of Area and Perimeter of Circle, Square, Rectangle---------------------",0
-    Teacher_Name byte "Submitted To: Mam Maryam Malik",0
-    Student_Name byte "Submitted By: 211077 Huzaifa-Ur-Rehman BSCYS-4B",0
+    Teacher_Name byte "Submitted To: Mam Romana Maroof",0
+    Student_Name byte "Submitted By: 221475 Ateeq-Ur-Rehman BSCS-3-C",0
+    Student_Name byte "Submitted By: 221478 Salman Abdullah BSCS-3-C",0
     ; Switch statement
     ; Declare a message to show when an invalid input is given
     default_msg byte "Invalid Input! Please Enter The Correct Input. ",0

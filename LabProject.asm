@@ -7,9 +7,9 @@ include Irvine32.inc
     Department_Name byte "------------------------------------------Department BS Computer Science-------------------------------------",0
     Subject_Name byte    "-----------------------------------Computer Organization & Assembly Language-------------------------------",0
     Project_Title byte   "------------------------Calculation of Area and Perimeter of Circle, Square, Rectangle---------------------",0
-    Teacher_Name byte "Submitted To: Mam Romana Maroof",0
+    Teacher_Name byte "Submitted To: Ma'am Romana Maroof",0
     Student_Name byte "Submitted By: 221475 Ateeq-Ur-Rehman BSCS-3-C",0
-    Student_Name byte "Submitted By: 221478 Salman Abdullah BSCS-3-C",0
+    Student_Name2 byte "Submitted By: 221478 Salman Abdullah BSCS-3-C",0
     ; Switch statement
     ; Declare a message to show when an invalid input is given
     default_msg byte "Invalid Input! Please Enter The Correct Input. ",0
@@ -34,7 +34,7 @@ include Irvine32.inc
 
     ; Circle Part
     ; Declare a message to get input from user
-    input byte "Enter the radius of the circle: ",0
+    input byte "Enter the radius of the circle (meters): ",0
     ; Declare a variable to store user's input
     val real4 ?
     ; Declare messages to show output
@@ -48,7 +48,7 @@ include Irvine32.inc
 
     ; Square Part
     ; Declare a message to get input from user
-    input_msg byte "Enter the side length of square: ",0
+    input_msg byte "Enter the side length of square (meters): ",0
     ; Declare a variable to store user's input
     side real4 ?
     ; Declare messages to show output
@@ -61,9 +61,9 @@ include Irvine32.inc
 
     ; Rectangle part
     ; Declare messages to get inputs from user
-    input_msg1 byte "Enter the length of Rectangle: ",0
+    input_msg1 byte "Enter the length of Rectangle (meters): ",0
     length1 real4 ?
-    input_msg2 byte "Enter the width of Rectangle: ",0
+    input_msg2 byte "Enter the width of Rectangle (meters): ",0
     width1 real4 ?
     ; Declare messages to show output
     output_msg3 byte "The perimeter of the Rectangle is: ",0
@@ -72,6 +72,8 @@ include Irvine32.inc
     area1 real4 ?
     ; Declare an integer variable to store the user's input as a menu choice
     inte1 dword ?
+
+    goodbye byte "Bye!"
 
 
 .code
@@ -92,6 +94,9 @@ Display_Name_Function PROC
     mov     edx, offset Student_Name
     call    writestring
     call    crlf
+    mov     edx, offset Student_Name2
+    call    writestring
+    call    crlf
     call    WaitMsg 
     call    Clrscr
     ret 
@@ -108,8 +113,19 @@ Choice_Function PROC
     call    Clrscr  
     mov     cho, al                  ; store the character in cho
     cmp     cho, 'y'
-    je      switch_Statement 
-    jmp     done
+    je      switch_Statement
+    cmp     cho, 'n'
+    je      done
+    jne     invalid_choice
+
+    invalid_choice:
+        
+        mov edx, offset default_msg
+        call WriteString
+        call crlf
+        call Choice_Function
+
+    ;jmp     done
     ret                              ; Returns control to the calling code.
 
     Choice_Function ENDP
@@ -438,6 +454,8 @@ main PROC
     jmp     switch_statement
 
     done::
+    mov edx, offset goodbye
+    call WriteString
     ; Exit the program               
 
     exit                       
